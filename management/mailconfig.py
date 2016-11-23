@@ -92,7 +92,7 @@ def open_database(env, with_connection=False):
 def get_mail_users(env):
 	# Returns a flat, sorted list of all user accounts.
 	c = open_database(env)
-	c.execute('SELECT email FROM users')
+	c.execute('SELECT quota||"|"||email FROM users')
 	users = [ row[0] for row in c.fetchall() ]
 	return utils.sort_email_addresses(users, env)
 
